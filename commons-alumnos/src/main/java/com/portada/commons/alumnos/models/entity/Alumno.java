@@ -1,4 +1,4 @@
-package com.portada.app.usuarios.models.entity;
+package com.portada.commons.alumnos.models.entity;
 
 import java.util.Date;
 
@@ -70,5 +70,21 @@ public class Alumno {
 
 	public void setCreateAt(Date createAt) {
 		this.createAt = createAt;
+	}
+	
+	@Override
+	public boolean equals(Object object) {
+		
+		if(this == object) {
+			return true;
+		}
+		
+		if(!(object instanceof Alumno)) {
+			return false;
+		}
+		
+		Alumno a = (Alumno) object;
+		
+		return this.id!=null && this.id.equals(a.getId());
 	}
 }

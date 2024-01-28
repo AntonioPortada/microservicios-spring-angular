@@ -1,42 +1,20 @@
 package com.portada.app.usuarios.services;
 
-import java.util.Optional;
+import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.portada.app.usuarios.models.entity.Alumno;
 import com.portada.app.usuarios.models.repository.AlumnoRepository;
+import com.portada.commons.alumnos.models.entity.Alumno;
+import com.portada.commons.services.CommonServicesImpl;
 
 @Service
-public class AlumnoServicesImpl implements AlumnoService {
-
-	@Autowired
-	private AlumnoRepository repository;
+public class AlumnoServicesImpl extends CommonServicesImpl<Alumno, AlumnoRepository> implements AlumnoService {
 	
 	@Override
 	@Transactional(readOnly = true)
-	public Iterable<Alumno> findAll() {
-		return repository.findAll();
+	public List<Alumno> findByNombreOrApellido(String term) {
+		return repository.findByNombreOrApellido(term);
 	}
-
-	@Override
-	@Transactional(readOnly = true)
-	public Optional<Alumno> findById(Long id) {
-		return repository.findById(id);
-	}
-
-	@Override
-	@Transactional
-	public Alumno save(Alumno alumno) {
-		return repository.save(alumno);
-	}
-
-	@Override
-	@Transactional
-	public void deleteById(Long id) {
-		repository.deleteById(id);
-	}
-
 }
