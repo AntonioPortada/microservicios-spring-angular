@@ -6,4 +6,5 @@ import com.portada.cursos.models.entity.Curso;
 public interface CursoService extends CommonService<Curso> {
 	
 	public Curso findCursoByAlumnoId(Long id);
+	public Iterable<Long> obtenerExamenesIdsConRespuestasAlumnos(Long alumnoId);
 }
